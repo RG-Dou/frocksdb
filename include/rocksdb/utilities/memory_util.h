@@ -18,6 +18,7 @@
 namespace ROCKSDB_NAMESPACE {
 
 // Returns the current memory usage of the specified DB instances.
+// Dr.G Resize the cache
 class MemoryUtil {
  public:
   enum UsageType : int {
@@ -45,6 +46,13 @@ class MemoryUtil {
       const std::vector<DB*>& dbs,
       const std::unordered_set<const Cache*> cache_set,
       std::map<MemoryUtil::UsageType, uint64_t>* usage_by_type);
+
+
+  // Dr.G
+  // Resize the cache
+  static int64_t CacheResize(
+      const std::shared_ptr<Cache> cache,
+      const std::int64_t target);
 };
 }  // namespace ROCKSDB_NAMESPACE
 #endif  // !ROCKSDB_LITE

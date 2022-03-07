@@ -48,5 +48,18 @@ Status MemoryUtil::GetApproximateMemoryUsageByType(
 
   return Status::OK();
 }
+
+//Dr.G
+int64_t MemoryUtil::CacheResize(
+    const std::shared_ptr<Cache> cache,
+    const std::int64_t target) {
+  cache->SetCapacity(target);
+
+  int64_t final = cache->GetCapacity();
+
+  return final;
+
+}
+
 }  // namespace ROCKSDB_NAMESPACE
 #endif  // !ROCKSDB_LITE

@@ -98,3 +98,27 @@ jobject Java_org_rocksdb_MemoryUtil_getApproximateMemoryUsageByType(
 
   return jusage_by_type;
 }
+
+//Dr.G
+/*
+ * Class:     org_rocksdb_MemoryUtil
+ * Method:    cacheResize
+ * Signature: ([J[J)Ljava/util/Long;
+ */
+jobject Java_org_rocksdb_MemoryUtil_cacheResize(
+    JNIEnv *env, jclass /*jclazz*/, jlong jcache_handle, jlong target_size) {
+
+
+  auto *cache_ptr = reinterpret_cast<std::shared_ptr<ROCKSDB_NAMESPACE::Cache> *>(
+              jcache_handle);
+
+//  compact_opts->output_file_size_limit =
+//      static_cast<uint64_t>(joutput_file_size_limit);
+  uint64_t final_size = ROCKSDB_NAMESPACE::MemoryUtil::CacheResize(
+      *cache_ptr, static_cast<uint64_t>(target_size));
+
+  const jobject jfinal_size = ROCKSDB_NAMESPACE::LongJni::valueOf(env, final_size);
+
+  return jfinal_size;
+
+}

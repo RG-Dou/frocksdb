@@ -57,4 +57,18 @@ public class MemoryUtil {
 
   private native static Map<Byte, Long> getApproximateMemoryUsageByType(final long[] dbHandles,
       final long[] cacheHandles);
+
+  //Dr.G
+
+  /**
+   * resize the cache, and return the final size.
+   * @param cacheHandle
+   * @param target size
+   * @return final size
+   */
+  public static long cacheResize(final Cache cache, final long target) {
+    return cacheResize(cache.nativeHandle_, target);
+  }
+
+  private native static Long cacheResize(final long cacheHandle, final long target);
 }
