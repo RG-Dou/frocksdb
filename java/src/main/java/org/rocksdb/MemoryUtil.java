@@ -62,7 +62,7 @@ public class MemoryUtil {
 
   /**
    * resize the cache, and return the final size.
-   * @param cacheHandle
+   * @param cache
    * @param target size
    * @return final size
    */
